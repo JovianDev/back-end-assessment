@@ -8,13 +8,6 @@ export const app = express();
 const PORT = process.env.PORT || 8080;
 
 app.use(express.json());
-app.use((req, res, next) => {
-  console.log('********************************');
-  console.log('REQ METHOD ', req.method);
-  console.log('REQ URL ', req.url);
-  console.log('********************************');
-  return next();
-});
 
 app.use('/api/ping', pingRoute);
 app.use('/api/posts', postsRoute);

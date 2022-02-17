@@ -137,99 +137,123 @@ describe('GET /api/posts', () => {
   });
   it('should default to sortby=id and direction=asc if only tags param passed', async () => {
     const response = await request(app).get('/api/posts?tags=history,tech');
-    expect(response.body[0].id).toBe(1);
-    expect(response.body[1].id).toBe(2);
-    expect(response.body[2].id).toBe(4);
-    expect(response.body[3].id).toBe(8);
-    expect(response.body[4].id).toBe(10);
-    expect(response.body[5].id).toBe(12);
+    expect(response.body[0].id).toBeLessThan(response.body[1].id);
+    expect(response.body[1].id).toBeGreaterThan(response.body[0].id);
+    expect(response.body[2].id).toBeGreaterThan(response.body[1].id);
+    expect(response.body[3].id).toBeGreaterThan(response.body[2].id);
+    expect(response.body[4].id).toBeGreaterThan(response.body[3].id);
+    expect(response.body[5].id).toBeGreaterThan(response.body[4].id);
   });
   it('should respond in with id in asc order when sortby=id and direction=asc', async () => {
     const response = await request(app).get(
       '/api/posts?tags=history,tech&sortby=id&direction=asc'
     );
-    expect(response.body[0].id).toBe(1);
-    expect(response.body[1].id).toBe(2);
-    expect(response.body[2].id).toBe(4);
-    expect(response.body[3].id).toBe(8);
-    expect(response.body[4].id).toBe(10);
-    expect(response.body[5].id).toBe(12);
+    expect(response.body[0].id).toBeLessThan(response.body[1].id);
+    expect(response.body[1].id).toBeGreaterThan(response.body[0].id);
+    expect(response.body[2].id).toBeGreaterThan(response.body[1].id);
+    expect(response.body[3].id).toBeGreaterThan(response.body[2].id);
+    expect(response.body[4].id).toBeGreaterThan(response.body[3].id);
+    expect(response.body[5].id).toBeGreaterThan(response.body[4].id);
   });
   it('should respond in with id in desc order when sortby=id and direction=desc', async () => {
     const response = await request(app).get(
       '/api/posts?tags=history,tech&sortby=id&direction=desc'
     );
-    expect(response.body[0].id).toBe(12);
-    expect(response.body[1].id).toBe(10);
-    expect(response.body[2].id).toBe(8);
-    expect(response.body[3].id).toBe(4);
-    expect(response.body[4].id).toBe(2);
-    expect(response.body[5].id).toBe(1);
+    expect(response.body[0].id).toBeGreaterThan(response.body[1].id);
+    expect(response.body[1].id).toBeLessThan(response.body[0].id);
+    expect(response.body[2].id).toBeLessThan(response.body[1].id);
+    expect(response.body[3].id).toBeLessThan(response.body[2].id);
+    expect(response.body[4].id).toBeLessThan(response.body[3].id);
+    expect(response.body[5].id).toBeLessThan(response.body[4].id);
   });
   it('should respond in with reads in asc order when sortby=reads and direction=asc', async () => {
     const response = await request(app).get(
       '/api/posts?tags=history,tech&sortby=reads&direction=asc'
     );
-    expect(response.body[0].reads).toBe(8504);
-    expect(response.body[1].reads).toBe(19645);
-    expect(response.body[2].reads).toBe(35913);
-    expect(response.body[3].reads).toBe(50361);
-    expect(response.body[4].reads).toBe(80351);
-    expect(response.body[5].reads).toBe(90406);
+    expect(response.body[0].reads).toBeLessThan(response.body[1].reads);
+    expect(response.body[1].reads).toBeGreaterThan(response.body[0].reads);
+    expect(response.body[2].reads).toBeGreaterThan(response.body[1].reads);
+    expect(response.body[3].reads).toBeGreaterThan(response.body[2].reads);
+    expect(response.body[4].reads).toBeGreaterThan(response.body[3].reads);
+    expect(response.body[5].reads).toBeGreaterThan(response.body[4].reads);
   });
   it('should respond in with reads in desc order when sortby=reads and direction=desc', async () => {
     const response = await request(app).get(
       '/api/posts?tags=history,tech&sortby=reads&direction=desc'
     );
-    expect(response.body[0].reads).toBe(90406);
-    expect(response.body[1].reads).toBe(80351);
-    expect(response.body[2].reads).toBe(50361);
-    expect(response.body[3].reads).toBe(35913);
-    expect(response.body[4].reads).toBe(19645);
-    expect(response.body[5].reads).toBe(8504);
+    expect(response.body[0].reads).toBeGreaterThan(response.body[1].reads);
+    expect(response.body[1].reads).toBeLessThan(response.body[0].reads);
+    expect(response.body[2].reads).toBeLessThan(response.body[1].reads);
+    expect(response.body[3].reads).toBeLessThan(response.body[2].reads);
+    expect(response.body[4].reads).toBeLessThan(response.body[3].reads);
+    expect(response.body[5].reads).toBeLessThan(response.body[4].reads);
   });
   it('should respond in with likes in asc order when sortby=likes and direction=asc', async () => {
     const response = await request(app).get(
       '/api/posts?tags=history,tech&sortby=likes&direction=asc'
     );
-    expect(response.body[0].likes).toBe(469);
-    expect(response.body[1].likes).toBe(590);
-    expect(response.body[2].likes).toBe(728);
-    expect(response.body[3].likes).toBe(735);
-    expect(response.body[4].likes).toBe(853);
-    expect(response.body[5].likes).toBe(960);
+    expect(response.body[0].likes).toBeLessThan(response.body[1].likes);
+    expect(response.body[1].likes).toBeGreaterThan(response.body[0].likes);
+    expect(response.body[2].likes).toBeGreaterThan(response.body[1].likes);
+    expect(response.body[3].likes).toBeGreaterThan(response.body[2].likes);
+    expect(response.body[4].likes).toBeGreaterThan(response.body[3].likes);
+    expect(response.body[5].likes).toBeGreaterThan(response.body[4].likes);
   });
   it('should respond in with likes in desc order when sortby=likes and direction=desc', async () => {
     const response = await request(app).get(
       '/api/posts?tags=history,tech&sortby=likes&direction=desc'
     );
-    expect(response.body[0].likes).toBe(960);
-    expect(response.body[1].likes).toBe(853);
-    expect(response.body[2].likes).toBe(735);
-    expect(response.body[3].likes).toBe(728);
-    expect(response.body[4].likes).toBe(590);
-    expect(response.body[5].likes).toBe(469);
+    expect(response.body[0].likes).toBeGreaterThan(response.body[1].likes);
+    expect(response.body[1].likes).toBeLessThan(response.body[0].likes);
+    expect(response.body[2].likes).toBeLessThan(response.body[1].likes);
+    expect(response.body[3].likes).toBeLessThan(response.body[2].likes);
+    expect(response.body[4].likes).toBeLessThan(response.body[3].likes);
+    expect(response.body[5].likes).toBeLessThan(response.body[4].likes);
   });
   it('should respond in with popularity in asc order when sortby=popularity and direction=asc', async () => {
     const response = await request(app).get(
       '/api/posts?tags=history,tech&sortby=popularity&direction=asc'
     );
-    expect(response.body[0].popularity).toBe(0.13);
-    expect(response.body[1].popularity).toBe(0.32);
-    expect(response.body[2].popularity).toBe(0.6);
-    expect(response.body[3].popularity).toBe(0.68);
-    expect(response.body[4].popularity).toBe(0.76);
-    expect(response.body[5].popularity).toBe(0.88);
+    expect(response.body[0].popularity).toBeLessThan(
+      response.body[1].popularity
+    );
+    expect(response.body[1].popularity).toBeGreaterThan(
+      response.body[0].popularity
+    );
+    expect(response.body[2].popularity).toBeGreaterThan(
+      response.body[1].popularity
+    );
+    expect(response.body[3].popularity).toBeGreaterThan(
+      response.body[2].popularity
+    );
+    expect(response.body[4].popularity).toBeGreaterThan(
+      response.body[3].popularity
+    );
+    expect(response.body[5].popularity).toBeGreaterThan(
+      response.body[4].popularity
+    );
   });
   it('should respond in with popularity in desc order when sortby=popularity and direction=desc', async () => {
     const response = await request(app).get(
       '/api/posts?tags=history,tech&sortby=popularity&direction=desc'
     );
-    expect(response.body[0].popularity).toBe(0.88);
-    expect(response.body[1].popularity).toBe(0.76);
-    expect(response.body[2].popularity).toBe(0.68);
-    expect(response.body[3].popularity).toBe(0.6);
-    expect(response.body[4].popularity).toBe(0.32);
-    expect(response.body[5].popularity).toBe(0.13);
+    expect(response.body[0].popularity).toBeGreaterThan(
+      response.body[1].popularity
+    );
+    expect(response.body[1].popularity).toBeLessThan(
+      response.body[0].popularity
+    );
+    expect(response.body[2].popularity).toBeLessThan(
+      response.body[1].popularity
+    );
+    expect(response.body[3].popularity).toBeLessThan(
+      response.body[2].popularity
+    );
+    expect(response.body[4].popularity).toBeLessThan(
+      response.body[3].popularity
+    );
+    expect(response.body[5].popularity).toBeLessThan(
+      response.body[4].popularity
+    );
   });
 });
